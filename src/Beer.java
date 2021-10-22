@@ -9,6 +9,12 @@ public class Beer {
         this.alc = alc;
     }
 
+    public Beer(String csv){
+        this.name = csv.substring(0, csv.indexOf(';'));
+        this.type = csv.substring(csv.indexOf(';') + 1, csv.lastIndexOf(';') );
+        this.alc = Double.parseDouble(csv.substring(csv.lastIndexOf(';')));
+    }
+
     @Override
     public String toString() {
         return name + " (" + type + ") " + String.format("%.1f",alc) + "%";
@@ -24,5 +30,9 @@ public class Beer {
 
     public double getAlc() {
         return alc;
+    }
+
+    public String getCSV() {
+        return getName() + ";" +  getType() + ";" +  getAlc();
     }
 }
