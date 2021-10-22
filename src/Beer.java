@@ -19,4 +19,20 @@ public class Beer {
                 ", alc=" + alc +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public double getAlc() {
+        return alc;
+    }
 }
