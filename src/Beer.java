@@ -1,11 +1,9 @@
 public class Beer {
-    private final int id;
     private String name;
     private String type;
     private double alc;
 
-    public Beer(int id, String name, String type, double alc) {
-        this.id = id;
+    public Beer(String name, String type, double alc) {
         this.name = name;
         this.type = type;
         this.alc = alc;
@@ -13,15 +11,10 @@ public class Beer {
 
     @Override
     public String toString() {
-        return "Beer{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", alc=" + alc +
+        return "{" +
+                "type='" + type + '\'' +
+                ", alc='" + alc + '\'' +
                 '}';
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {

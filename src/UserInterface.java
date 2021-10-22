@@ -45,7 +45,7 @@ public class UserInterface {
     private void listAllBeers() {
         ArrayList<Beer> beers = application.getAllBeers();
         for (Beer beer : beers) {
-            System.out.println(beer);
+            printBeer(beer);
         }
     }
 
@@ -57,6 +57,12 @@ public class UserInterface {
         }catch (NumberFormatException e){
             return -1;
         }
+    }
+
+    public void printBeer(Beer beer){
+        System.out.println("Name: " + beer.getName());
+        System.out.println("Type: " + beer.getType());
+        System.out.printf("Alc: %.1f", beer.getAlc()*100).println("%");
     }
 
     public void printMenu() {

@@ -6,7 +6,7 @@ public class Database {
 
     public Database() {
         this.beers = getBeersFromFile();
-        this.beers.add(new Beer(10, "A Beer", "Stout", 0.005));
+        this.beers.add(new Beer("A Beer", "Stout", 0.005));
     }
 
     public ArrayList<Beer> getAllbeers(){
