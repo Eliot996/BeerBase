@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 public class BeerBase {
     private UserInterface ui = new UserInterface(this);// <- dependency injection
@@ -12,7 +13,15 @@ public class BeerBase {
         new BeerBase().run();
     }
 
-    public ArrayList<Beer> getAllBeers() {
+    public List<Beer> getAllBeers() {
         return db.getAllbeers();
+    }
+
+    public void addBeer(String name, String type, double alc) {
+        db.addBeer(name, type, alc);
+    }
+
+    public void saveBeers() throws FileNotFoundException{
+            db.saveToFile();
     }
 }

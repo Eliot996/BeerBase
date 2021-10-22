@@ -11,10 +11,7 @@ public class Beer {
 
     @Override
     public String toString() {
-        return "{" +
-                "type='" + type + '\'' +
-                ", alc='" + alc + '\'' +
-                '}';
+        return name + " (" + type + ") " + String.format("%.1f",alc) + "%";
     }
 
     public String getName() {

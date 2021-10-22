@@ -1,9 +1,12 @@
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
     private final BeerBase application;
-    private final Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in).useLocale(Locale.ENGLISH);
 
     public UserInterface(BeerBase beerBase) {
         this.application = beerBase;
@@ -22,8 +25,19 @@ public class UserInterface {
                 case 4 -> editBeer();
                 case 5 -> addBeer();
                 case 6 -> removeBeer();
+                case 7 -> saveBeers();
                 default -> print("Invalid input");
             }
+        }
+    }
+
+    private boolean saveBeers() {
+        try{
+            application.saveBeers();
+            return true;
+        }catch (FileNotFoundException e){
+            System.out.println();
+            return false;
         }
     }
 
@@ -31,6 +45,17 @@ public class UserInterface {
     }
 
     private void addBeer() {
+        System.out.println("Add new beer: ");
+        System.out.print("Name: ");
+        String name = input.nextLine().trim();
+
+        System.out.print("Type: ");
+        String type = input.nextLine().trim();
+
+        System.out.print("Alc%: ");
+        double alc = Double.parseDouble(input.nextLine().trim());
+
+        application.addBeer(name, type, alc);
     }
 
     private void editBeer() {
@@ -43,7 +68,7 @@ public class UserInterface {
     }
 
     private void listAllBeers() {
-        ArrayList<Beer> beers = application.getAllBeers();
+        List<Beer> beers = application.getAllBeers();
         for (Beer beer : beers) {
             printBeer(beer);
         }
@@ -60,9 +85,7 @@ public class UserInterface {
     }
 
     public void printBeer(Beer beer){
-        System.out.println("Name: " + beer.getName());
-        System.out.println("Type: " + beer.getType());
-        System.out.printf("Alc: %.1f", beer.getAlc()*100).println("%");
+        System.out.println(beer);
     }
 
     public void printMenu() {
