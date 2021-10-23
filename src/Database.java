@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Database {
-    private final String FILE_PATH = "data/beers.csv"; // TODO: 22/10/2021 get file name and type
+    private final String FILE_PATH = "data/beers.csv";
     private final ArrayList<Beer> beers;
 
     public Database() {
@@ -17,16 +17,15 @@ public class Database {
         this.beers.add(new Beer("A Beer", "Stout", 0.5));
     }
 
-    private ArrayList<Beer> getBeersFromFile() {
+    private void getBeersFromFile() {
         try {
-            Scanner load = new Scanner(new File("data/base.csv"));
+            Scanner load = new Scanner(new File(FILE_PATH));
             while(load.hasNextLine()){
                 beers.add(new Beer(load.nextLine()));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
     }
 
     public void addBeer(String name, String type, double alc) {
@@ -38,8 +37,6 @@ public class Database {
         PrintStream ps = null;
         try {
             ps = new PrintStream(file, StandardCharsets.UTF_8);
-            ps.println("name;type;alc");
-
             for (Beer beer : beers) {
                 ps.println(beer.getCSV());
             }

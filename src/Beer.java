@@ -12,7 +12,11 @@ public class Beer {
     public Beer(String csv){
         this.name = csv.substring(0, csv.indexOf(';'));
         this.type = csv.substring(csv.indexOf(';') + 1, csv.lastIndexOf(';') );
-        this.alc = Double.parseDouble(csv.substring(csv.lastIndexOf(';')));
+        try {
+            this.alc = Double.parseDouble(csv.substring(csv.lastIndexOf(';') + 1)) * 100;
+        }catch (NumberFormatException e){
+            this.alc = 0;
+        }
     }
 
     @Override
